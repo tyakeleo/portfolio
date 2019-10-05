@@ -1,0 +1,14 @@
+current directory: C:/Users/portfolio/bundle/config/ruby/2.5.0/gems/nio4r-2.5.2/ext/nio4r
+C:/Ruby25-x64/bin/ruby.exe -r ./siteconf20191005-11204-a7cmpn.rb extconf.rb
+
+current directory: C:/Users/portfolio/bundle/config/ruby/2.5.0/gems/nio4r-2.5.2/ext/nio4r
+make "DESTDIR=" clean
+make: *** ターゲット 'clean' を make するルールがありません.  中止.
+
+current directory: C:/Users/portfolio/bundle/config/ruby/2.5.0/gems/nio4r-2.5.2/ext/nio4r
+make "DESTDIR="
+make: 'all' に対して行うべき事はありません.
+
+current directory: C:/Users/portfolio/bundle/config/ruby/2.5.0/gems/nio4r-2.5.2/ext/nio4r
+make "DESTDIR=" install
+make: 'install' に対して行うべき事はありません.

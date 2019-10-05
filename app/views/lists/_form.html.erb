@@ -1,0 +1,32 @@
+<!-- listは変数の引き渡し元がlistで渡してるから@listじゃない -->
+<!-- form_forは 引数のインスタンスが何も情報もってなければ、createアクションへ-->
+<!-- 持ってたらupfateアクションへ飛ばす-->
+<%= form_for(list) do |f| %>
+  <% if list.errors.any? %>
+    <div id="error_explanation">
+    <!-- pluralizeで複数系か判断？errorsになる？　-->
+      <h2><%= pluralize(list.errors.count, "error") %> 新規作成に失敗しました:</h2>
+
+      <ul>
+      <% list.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :名前 %>
+    <%= f.text_field :name %>
+  </div>
+
+  <div class="field">
+    <%= f.label :タイトル %>
+    <%= f.text_field :title %>
+  </div>
+
+  <div class="actions">
+  <!-- form_forとリンクして、createかupdateに飛ばす --->
+ <%= f.submit '保存', class: 'btn btn-primary' %>
+  </div>
+<% end %>

@@ -1,0 +1,32 @@
+<p id="notice"><%= notice %></p>
+
+<h1>一覧</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>投稿者</th>
+      <th>作品</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @lists.each do |list| %>
+      <tr>
+        <td><%= list.name %></td>
+        <td><%= list.title %></td>
+        <!-- listはオブジェクト名で,list.idが1であれば、list/1がリンク先になる -->
+        <td><%= link_to '詳細', list %></td>
+        <!-- rails/info/routesの設定パスに、listオブジェクトごと渡してる -->
+        <td><%= link_to '編集', edit_list_path(list) %></td>
+        <td><%= link_to '削除', list, method: :delete, data: { confirm: '本当に削除しますか？' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<!-- pathはrails/info/routesの設定　-->
+<%= link_to '新規作成', new_list_path %>
