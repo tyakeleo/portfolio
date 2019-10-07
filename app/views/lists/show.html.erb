@@ -10,5 +10,20 @@
   <%= @list.title %>
 </p>
 
+<p>
+  <strong>タグ:</strong>
+  <% @list.tags.each do |tag| %>
+    <%= tag.name %>
+  <% end %>
+</p>
+
+<div class="p-comment__list">
+  <div class="p-comment_listTitle">コメント</div>
+  <%= render @list.comments %>
+</div>
+
+<!-- partialで別シートを呼びだしてる -->
+<%= render partial: 'comment_form', locals: { comment: @comment } %>
+
 <%= link_to 'Edit', edit_list_path(@list) %> |
 <%= link_to 'Back', lists_path %>

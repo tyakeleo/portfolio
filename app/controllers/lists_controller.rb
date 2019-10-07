@@ -7,11 +7,17 @@ class ListsController < ApplicationController
   def index
     @lists = List.all
   end
-
+  
+  def all_index
+    @lists = params[:tag_id].present? ? Tag.find(params[:tag_id]).lists : List.all
+    @lists = @lists.page(params[:page])
+  end
   # GET /lists/1
   # GET /lists/1.json
   #何もAction内に記載しない場合、render 'show(アクション名)'を省略しているのと同じ効果を持つ
+
   def show
+    @comment = Comment.new(list_id: @list.id)
   end
 
   # GET /lists/new
@@ -28,7 +34,10 @@ class ListsController < ApplicationController
   def create
     @list = List.new(list_params)
 
-    #formatがhtmlで指定されていたら@listにリダイレクト、jsonで指定されていたらshowにリダイレクト？
+    # formatがhtmlで指定されていたら@listにリダイレクト、jsonで指定されていたらshowにリダイレクト？
+    # 通常時ではHTML形式（いつもウェブサイト上で見る形）で結果を取得したいけど、明示的にJSON形式やXML形式を指定した場合は
+    # JSON形式やXML形式で返すようにするメソッドらしい
+    # 今回の運用ではhtmlの方しか使わない
     respond_to do |format|
       if @list.save
         format.html { redirect_to @list, notice: 'List was successfully created.' }
@@ -72,6 +81,6 @@ class ListsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def list_params
-      params.require(:list).permit(:name, :title)
+      params.require(:list).permit(:name, :title, tag_ids: [])
     end
 end

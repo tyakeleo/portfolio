@@ -1,0 +1,16 @@
+<h1>ログイン</h1>
+
+<!-- postでrouteのsessions#create呼び出す -->
+<%= form_for(:session, method: :post, url: login_path) do |f| %>
+  <div class="form-group">
+    <%= f.label :name, 'ユーザー名' %>
+    <!-- text_fieldでユーザ名の作成 -->
+    <%= f.text_field :name, class: 'form-control' %>
+  </div>
+  <div class="form-group">
+    <%= f.label :password, 'パスワード' %>
+     <!-- password_fieldでユーザ名の作成 -->
+    <%= f.password_field :password, class: 'form-control' %>
+  </div>
+  <%= f.submit 'ログイン', class: 'btn btn-primary' %>
+<% end %>
