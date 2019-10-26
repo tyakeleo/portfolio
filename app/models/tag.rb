@@ -8,6 +8,7 @@
 #  updated_at :datetime         not null
 #
 
+
 class Tag < ApplicationRecord
     has_many :all_list_tag_relations, dependent: :delete_all
     has_many :lists, through: :all_list_tag_relations

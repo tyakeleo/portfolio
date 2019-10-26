@@ -1,0 +1,52 @@
+<!-- getをつけないと遷移できないっぽい　-->
+<!-- sessionとuserどっちでもいいのかな? -->
+<%= form_for(user,method: :post, url: mypage_path(:name => @current_user.name), multipart: true) do |f| %>
+    <div class="form_position">
+        <h1 class="title_user_register_edit">ユーザ登録</h1>
+        <div class="form_format">
+
+            <div class="user-info">
+                <h4><strong>・性別を選択してください</strong></h4>
+                <div class="info-position gender-position">
+                    <%= f.radio_button :gender, :male %>
+                    <%= f.label :gender, "男性", {value: :male, style: "display: inline-block;"} %>
+                    <%= f.radio_button :gender, :female %>
+                    <%= f.label :gender, "女性", {value: :female, style: "display: inline-block;"} %>
+                </div>
+            </div>
+
+            <div class="user-info">
+                <h4><strong>・ご年齢を入力してください</strong></h4>
+                <div class="info-position">
+                    <%= f.text_field :age, class: 'form-age' %>
+                    <!-- spanタグでインラインブロックを作成。横並びとかできる -->
+                    <span>歳</span>
+                </div>
+            </div>
+
+            <div class="user-info">
+                <h4><strong>・プロフィール画像を選択してください</strong></h4>
+                <div class="info-position">
+                    <!-- 本来ならmultipart => trueが、form_forに必要だがfile_fieldにすれば不要-->
+                    <%= f.file_field :image %>
+                </div>
+            </div>
+   
+            <div class="user-info">
+                <!-- text_areaで自由に記入できる -->
+                <h4><strong>・自己紹介文を記入してください。</strong></h4>
+                <div class="info-position">
+                    <%= f.text_area :myprofile, class: 'form-profile' %>
+                </div>
+            </div>
+            
+        </div>
+
+        <%= f.hidden_field :name %>
+        <%= f.hidden_field :password %>
+        <%= f.hidden_field :password_confirmation %>
+
+        <%= f.submit '次へ', class: 'btn btn-next' %>
+
+    </div>
+<% end %>

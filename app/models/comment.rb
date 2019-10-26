@@ -14,6 +14,7 @@
 #  index_comments_on_list_id  (list_id)
 #
 
+
 class Comment < ApplicationRecord
   # コメントは一つのlistに紐づくから単数形
   belongs_to :list

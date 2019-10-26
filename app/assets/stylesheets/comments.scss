@@ -2,12 +2,27 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
-.p-comment__formBox {
-    margin: 30px auto;
-    border: 5px solid #e8e8e8;
-    padding: 25px;
-    border-radius: 14px;
-  }
+.p-comment__formBox{
+    margin:30px auto;
+    position: relative;
+    padding: 0.5em 1.5em;
+    border-top: solid 2px black;
+    border-bottom: solid 2px black;
+    text-align: left;
+    width: 50%;
+    position: relative;
+}
+.p-comment__formBox:before, .p-comment__formBox:after{
+    content: '';
+    position: absolute;
+    top: -10px;
+    width: 2px;
+    height: -webkit-calc(100% + 20px);
+    height: calc(100% + 20px);
+    background-color: black;
+}
+.p-comment__formBox:before {left: 10px;}
+.p-comment__formBox:after {right: 10px;}
   
   .p-comment__formTitle {
     border-bottom: 2px solid #dfdfdf;
@@ -21,20 +36,27 @@
   
   .p-comment__list {
     margin: 38px 0;
-    padding: 20px;
+    width: 70%;
   }
   
   .p-comment__item {
     padding: 18px;
     border-bottom: 2px dotted #dfdfdf;
+  
   }
   
   .p-comment__bottomLine {
     font-size: 15px;
-    text-align: right;
+    text-align: center;
   
     > span {
       font-size: 14px;
       margin: 0 12px;
     }
   }
+
+.submit_position {
+  position: absolute;
+  right: 3%;
+  bottom: 3%;
+}

@@ -1,0 +1,65 @@
+.show_position {
+    width: 70%;
+    margin: auto;
+}
+
+.text_position {
+    text-align: left;
+}
+
+.show_img_profile {
+    display: block;
+    margin-top: 10px;
+    width: 15%;
+    height: auto;
+    text-align: left;
+    float:left;
+}
+
+.review_design {
+    margin-left: 15px;
+    margin-bottom: 50px;
+    height: 200px;
+    width: 70%;
+    float: right;
+    background: #f1f1f1;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.22);
+}
+.review_design .box-title {
+    font-size: 1.2em;
+    background: #5fc2f5;
+    padding: 4px;
+    text-align: left;
+    color: #FFF;
+    font-weight: bold;
+    letter-spacing: 0.05em;
+}
+.review_design p {
+    padding: 15px 20px;
+    margin: 0;
+}
+
+
+.comment_design {
+    position: relative;
+    margin-top: 20px;
+    padding: 0.5em 1em;
+    border: solid 3px #62c1ce;
+    border-radius: 0px 14px 14px 14px;
+    clear:both;
+}
+
+.comment_design .p-comment_listTitle {
+    position: absolute;
+    display: inline-block;
+    top: -27px;
+    left: -3px;
+    padding: 0 9px;
+    height: 25px;
+    line-height: 25px;
+    font-size: 17px;
+    background: #62c1ce;
+    color: #ffffff;
+    font-weight: bold;
+    border-radius: 5px 5px 0 0;
+}

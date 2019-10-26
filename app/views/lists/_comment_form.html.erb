@@ -1,17 +1,18 @@
 
 <div class="p-comment__formBox">
-  <p class="p-comment__formTitle">コメント記入</p>
+  <strong><p class="p-comment__formTitle">コメント記入</p></strong>
   <%= form_for comment do |f| %>
     <!-- コメントと一緒に掲示板のidを渡すのに必要.ユーザに見せないけど必要な値の時に使う -->
     <%= f.hidden_field :list_id %>
     <div class="form-group">
-      <%= f.label :name, '名前' %>
-      <%= f.text_field :name, class: 'form-control' %>
+      <%= '名前' %>
+      <%= @current_user.name %>
+      <%= f.hidden_field :name, :value => @current_user.name %>
     </div>
     <div class="form-group">
       <%= f.label :comment, 'コメント' %>
       <%= f.text_area :comment, class: 'form-control', rows: 4 %>
     </div>
-    <%= f.submit '送信', class: 'btn btn-primary' %>
+    <%= f.submit '送信', class: 'btn btn-primary submit_position' %>
   <% end %>
 </div>

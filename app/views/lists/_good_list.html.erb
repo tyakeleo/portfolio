@@ -1,0 +1,16 @@
+<% if @goods.present? %>
+    <% @goods.each do |good| %>
+      <div class="list">
+        <% if good.url %>
+          <%= link_to image_tag(good['mediumImageUrls'][0], style: "width: 70px;height: 100px;display: inline-block;"),  
+                      list_details_path(@list, params: { list: {:name => @current_user.name, :image => @current_user.image, :image_url => @current_user.image.url,
+                      :product_name => good.name,:product_image => good['mediumImageUrls'][0], :product_url => good.url} }), method: :post %>
+        <%end%>
+  
+        <%= good.name %>
+
+      </div>
+    <% end %>
+
+    <%= link_to '戻る', :back %>
+<% end %>

@@ -1,3 +1,107 @@
 // Place all the styles related to the lists controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+.boards__table {
+    tr:hover {
+      // ポインターになる
+      cursor: pointer;
+    }
+  }
+  
+.boards__linkBox {
+  a {
+    margin: 0 8px;
+  }
+}
+
+.list_title {
+  background: #05bac7;
+  box-shadow: 0px 0px 0px 5px #05bac7;
+  border: dashed 2px white;
+  padding: 0.2em 0.5em;
+  margin: 20px auto;
+}
+
+.thead-dark {
+    margin: 100px auto
+}
+
+.inline-block {
+  display: inline-block;
+}
+
+.inline-block_test {
+  float: left;
+}
+
+.position_right {
+  float: right;
+  margin: 20px auto;
+}
+
+.new_create {
+  background: #f8fc0b;
+}
+
+.table {
+    // fixedを指定することで、この表全体の幅を決めれる
+    table-layout: fixed;
+    width: 100%;
+}
+
+.width10 {
+  width: 10%;
+}
+
+.width15 {
+  width: 15%;
+}
+
+.width25 {
+  width: 25%;
+}
+
+.width40 {
+  width: 40%;
+}
+
+
+.author_name {
+  text-align: center;
+}
+
+.author_image {
+  margin: 10px auto;
+  height: auto;
+}
+
+.list_img_profile {
+  margin:auto;
+  width: 100%;
+  height: auto;
+  text-align: center;
+}
+
+.product_name {
+  text-align: center;
+}
+
+.product_image {
+  margin: 10px auto;
+}
+
+.rate-block {
+  display: inline-block;
+}
+
+.rate {
+  color: red;
+}
+
+.value {
+  display: inline-block;   
+}
+
+.value h4 {
+  .sample{font-family: cursive;}
+}

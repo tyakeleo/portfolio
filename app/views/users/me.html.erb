@@ -1,2 +1,68 @@
-<h1>マイページ</h1>
-<%= @current_user.name %>
+<!-- justify-content-centerで中央に寄せることができる -->
+
+<div id="myTabContent" class="tab-content">
+    <!-- fadeでフェードイン・アウトで切り替える。最初に表示するやつにactive in つけないと表示されない-->
+    <!-- fadeを最初のに付けてると何も表示されない -->
+  <div class="mypage_size inline-block">
+    <h1 class="mypage_title">マイページ</h1>
+    <div class="follow_position">
+      <%= render 'relationships/follow_button', user: @user %>
+    </div>
+  </div>
+
+  <ul class="nav nav-tabs justify-content-left">
+    <li class="nav-item"><a href="#profile" class="nav-link tab active" data-toggle="tab">自己紹介</a></li>
+    <li class="nav-item"><a href="#profile2" class="nav-link tab" data-toggle="tab">お気に入り</a></li>
+    <li class="nav-item"><a href="#profile3" class="nav-link tab" data-toggle="tab">フォローワー</a></li>
+  </ul> 
+
+ 
+    <div class="tab-pane tap-boder active in" id="profile">
+      <div class="user_name"> 
+          <h2><%= @user.name %></h2>
+      </div>
+        <% if @user.image? %>
+          <%= image_tag @user.image.url, class: 'img_profile' %>
+        <% else %>
+          <%= image_tag "noimage.gif",  class: 'img_profile' %>
+        <% end %>
+      <div class="profile_design">
+          <h1 class="tab_position title_profile">自己紹介</h1>
+          <p><%= @user.myprofile %></p>
+      </div>
+    </div>
+
+    <div class="tab-pane tap-boder fade" id="profile2">
+      <p>Etsy mixtape wayfarers, ethical wes anderson tofu before they sold out mcsweeney's organic lomo retro fanny pack lo-fi farm-to-table readymade. Messenger bag gentrify pitchfork tattooed craft beer, iphone skateboard locavore carles etsy salvia banksy hoodie helvetica. DIY synth PBR banksy irony. Leggings gentrify squid 8-bit cred pitchfork.</p>
+    </div>
+
+    <div class="tab-pane tap-boder fade" id="profile3">
+      <% if !@follow.nil? %>
+        <% @follow.each do |list| %>
+          <div class="author_name_follower ">
+            <% if list.user_id== @current_user.id %>
+
+              <div class="name_follower inline-block_follower">
+                <%= link_to list.name, mypage_path(:name => list.name), method: :get %>
+              </div>
+
+              <div class="image_follower inline-block_follower">
+                <%= image_tag list.image_url, class: 'image_follower_profile' %> 
+              </div>
+
+              <div class="profile_follower inline-block_follower">
+                <p><%= list.myprofile %></p>
+              </div>
+              <!--
+              <div class="image_follower inline-block_follower">
+                <%= link_to '次へ', :back %>
+              </div>
+              -->
+            <% end %> 
+          </div>  
+      <% end %>    
+    <% end%>
+    </div>
+
+</div>
+

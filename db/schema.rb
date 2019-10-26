@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20191006045718) do
+ActiveRecord::Schema.define(version: 20191019215008) do
 
   create_table "all_list_tag_relations", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.integer  "list_id"
@@ -33,8 +33,29 @@ ActiveRecord::Schema.define(version: 20191006045718) do
   create_table "lists", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string   "name"
     t.string   "title"
+    t.string   "image"
+    t.string   "image_url"
+    t.string   "product_image"
+    t.string   "product_url"
+    t.string   "product_name"
+    t.string   "product_review"
+    t.float    "rate",           limit: 24
+    t.datetime "created_at",                null: false
+    t.datetime "updated_at",                null: false
+  end
+
+  create_table "relationships", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.integer  "user_id"
+    t.integer  "follow_id"
+    t.string   "name"
+    t.string   "image"
+    t.string   "image_url"
+    t.string   "myprofile"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["follow_id"], name: "index_relationships_on_follow_id", using: :btree
+    t.index ["user_id", "follow_id"], name: "index_relationships_on_user_id_and_follow_id", unique: true, using: :btree
+    t.index ["user_id"], name: "index_relationships_on_user_id", using: :btree
   end
 
   create_table "tags", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
@@ -46,6 +67,10 @@ ActiveRecord::Schema.define(version: 20191006045718) do
   create_table "users", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string   "name",            null: false
     t.string   "password_digest", null: false
+    t.string   "image"
+    t.string   "age"
+    t.string   "gender"
+    t.string   "myprofile"
     t.datetime "created_at",      null: false
     t.datetime "updated_at",      null: false
     t.index ["name"], name: "index_users_on_name", unique: true, using: :btree
@@ -54,4 +79,6 @@ ActiveRecord::Schema.define(version: 20191006045718) do
   add_foreign_key "all_list_tag_relations", "lists"
   add_foreign_key "all_list_tag_relations", "tags"
   add_foreign_key "comments", "lists"
+  add_foreign_key "relationships", "users"
+  add_foreign_key "relationships", "users", column: "follow_id"
 end

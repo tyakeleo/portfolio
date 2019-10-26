@@ -2,5 +2,9 @@
 
 <%= render 'form', list: @list %>
 
+<!-- 文字列比較は== -->
+<% if @current_user.name == @list.name %>
+    <%= link_to '削除', @list, method: :delete, data: { confirm: '本当に削除しますか？' } %>
+<% end %>
 <%= link_to 'Show', @list %> |
 <%= link_to '戻る', lists_path %>

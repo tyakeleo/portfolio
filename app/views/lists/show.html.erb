@@ -1,29 +1,40 @@
 <p id="notice"><%= notice %></p>
 
-<p>
-  <strong>Name:</strong>
-  <%= @list.name %>
-</p>
+<div class="show_position">
 
-<p>
-  <strong>Title:</strong>
-  <%= @list.title %>
-</p>
+    <p class="text_position">
+      <strong>レビュー者:</strong>
+      <%= @list.name %>
+    </p>
 
-<p>
-  <strong>タグ:</strong>
-  <% @list.tags.each do |tag| %>
-    <%= tag.name %>
-  <% end %>
-</p>
+    <p class="text_position">
+      <strong>Title:</strong>
+      <%= @list.product_name %>
+    </p>
+    
+    <div class="value">
+      <strong class="rate-block">評価：<strong class="rate rate-block"><%= @list.rate %></strong>点</strong>
+    </div>
 
-<div class="p-comment__list">
-  <div class="p-comment_listTitle">コメント</div>
-  <%= render @list.comments %>
-</div>
+    <p class="text_position">
+      <%= image_tag @list.product_image, class: 'show_img_profile' %>
+      <div class="review_design">
+        <div class="box-title">レビュー内容</div>
+        <%= @list.product_review %>
+      </div>
+    </p>
+    
+
+    <div class="comment_design">
+      <div class="p-comment__list text_position">
+        <div class="p-comment_listTitle"><strong>コメント</strong></div>
+        <%= render @list.comments %>
+      </div>
+    </div>
+  </div>
 
 <!-- partialで別シートを呼びだしてる -->
-<%= render partial: 'comment_form', locals: { comment: @comment } %>
+  <%= render partial: 'comment_form', locals: { comment: @comment } %>
 
 <%= link_to 'Edit', edit_list_path(@list) %> |
 <%= link_to 'Back', lists_path %>

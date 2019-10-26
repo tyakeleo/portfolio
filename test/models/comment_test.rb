@@ -14,6 +14,7 @@
 #  index_comments_on_list_id  (list_id)
 #
 
+
 require 'test_helper'
 
 class CommentTest < ActiveSupport::TestCase
