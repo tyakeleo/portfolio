@@ -1,0 +1,43 @@
+<%= form_for(@list,method: :get, url: lists_path(:product_review => @current_user.name)) do |f| %>
+    <h1>新規作成</h1>>
+    <%= @list.name %>
+    <!-- <%= image_tag @list.product_image, class: 'img_profile' %> -->
+
+    <!-- 評価 -->
+    <div class="form-group row" id="star">
+        <%= f.label :rate,'評価 ', class:'col-md-3 col-form-label' %>
+        <%= f.hidden_field :rate %>
+    </div>
+
+    <!-- 評価javascript -->
+    <script>
+    $('#star').raty({
+        size     : 36,
+        starOff:  '<%= asset_path('star-off.png') %>',
+        starOn : '<%= asset_path('star-on.png') %>',
+        starHalf: '<%= asset_path('star-half.png') %>',
+        scoreName: 'list[rate]',
+        half: true,
+    });
+    </script>
+
+    <div class="user-info">
+        <!-- text_areaで自由に記入できる -->
+        <h4>・reviewを記入してください。</h4>
+        <div class="info-position">
+            <%= f.text_area :product_review, class: 'form-profile' %>
+        </div>
+    </div>
+
+    <!-- ここにlistのぶち込む-->
+    <%= f.hidden_field :name %>
+    <%= f.hidden_field :image %>
+    <%= f.hidden_field :image_url %>
+    <%= f.hidden_field :product_image %>
+    <%= f.hidden_field :product_name %>
+
+    <%= f.submit '次へ', class: 'btn btn-next' %>
+<%= link_to '戻る', lists_path %>
+
+<% end %>
+  

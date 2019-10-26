@@ -1,0 +1,98 @@
+.title_user_register_edit {
+    color: #010079;
+    text-shadow: 0 0 5px white;
+    width: 30%;
+    margin-top: 20px;
+    padding: 0.3em 0.5em;
+    background: -webkit-repeating-linear-gradient(-45deg, #cce7ff, #cce7ff 3px,#e9f4ff 3px, #e9f4ff 7px);
+    background: repeating-linear-gradient(-45deg, #cce7ff, #cce7ff 3px,#e9f4ff 3px, #e9f4ff 7px);
+}
+
+.form_position {
+    background-color: white;
+    width: 70%;
+    margin: auto;
+    //「次へ」ボタンを右下に配置するために定義
+    // absoluteの開始位置として使用する
+    position:relative;
+}
+
+.form_format{
+    margin:2em 0;
+    position: relative;
+    padding: 0.25em 1em;
+    border: solid 4px #95ccff;
+    border-radius: 3px 0 3px 0;
+}
+.form_format:before,.form_format:after
+{
+    content: '';
+    position: absolute;
+    width:10px;
+    height: 10px;
+    border: solid 2px #95ccff;
+    border-radius: 50%;
+}
+.form_format:after {
+    top:-12px;
+    left:-12px;
+}
+.form_format:before {
+    bottom:-12px;
+    right:-12px;
+}
+.form_format p {
+    margin: 0; 
+    padding: 0;
+}
+
+.form_format h4 {
+    font-family: sans-serif;
+    display: inline-block;
+    line-height: 1.5;
+    border-bottom: dashed 1.5px rgb(27, 89, 221);
+    list-style-type: none!important;
+    margin-left: 3%;
+}
+
+.user-info {
+    margin: 15px auto;
+}
+
+.info-position {
+    margin-left: 3%;
+}
+
+.gender-position {
+    margin-left: 4%;
+}
+
+.age_side {
+    float: left;
+}
+
+.form-age {
+    background-color: white;
+    width: 10%;
+    margin: 10px auto;
+    border: 2px solid #d1d1d1;
+    padding: 3px
+}
+
+.form-profile {
+    background-color: white;
+    width: 90%;
+    height: 120px;
+    margin: 10px auto;
+    border: 2px solid #d1d1d1;
+    padding: 5px
+}
+
+.btn-next {
+    color: #fff;
+    background-color: #007bff;
+    border-color: #818f9e;
+    // 絶対位置への配置
+    // form_positionを基準として、左から80%の場所に配置している
+    float: right;
+}

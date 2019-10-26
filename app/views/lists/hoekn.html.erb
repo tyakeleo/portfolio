@@ -1,0 +1,51 @@
+<%= form_for(list, url: list_details_path, method: :post) do |f| %>
+  <% if list.errors.any? %>
+    <div id="error_explanation">
+    <!-- pluralizeで複数系か判断？errorsになる？　-->
+      <h2><%= pluralize(list.errors.count, "error") %> 新規作成に失敗しました:</h2>
+
+      <ul>
+      <% list.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :名前 %>
+    <%= @current_user.name %>
+    <!-- valueに名前を指定して、nameに代入する -->
+    <%= f.hidden_field :name, :value => @current_user.name %>
+  </div>
+
+  <div class="field">
+    <%= f.label :タイトル %>
+    <%= f.text_field :title %>
+  </div>
+
+     <% if @current_user.image? %>
+        <%= image_tag @current_user.image.url, class: 'img_profile' %>
+      <% else %>
+        <%= image_tag "noimage.gif",  class: 'img_profile' %>
+      <% end %> 
+
+      <!-- 自分か他人かを区別するために用意 -->
+      <%= f.hidden_field :name, :value => @current_user.name %>
+      
+      <%= f.hidden_field :image, :value => @current_user.image %>
+
+      <!-- image_urlを作成することで、無理やりユーザごとのパスを渡す -->
+      <%= f.hidden_field :image_url, :value => @current_user.image.url %>
+
+  <div class="form-group">
+    <span>タグ</span>
+    <%= f.collection_check_boxes(:tag_ids, Tag.all, :id, :name) do |tag| %>
+      <div class="form-check">
+        <%= tag.label class: 'form-check-label' do %>
+          <%= tag.check_box class: 'form-check-input' %>
+          <%= tag.text %>
+        <% end %>
+      </div>
+    <% end %>
+  </div>

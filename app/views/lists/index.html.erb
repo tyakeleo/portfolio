@@ -1,36 +1,103 @@
 <!-- noticeで渡されたmsgを出力 -->
-<p id="notice"><%= notice %></p>
+  <div class="container">
+    <p id="notice"><%= notice %></p>
 
-<h1>一覧</h1>
+    <div class="inline-block_test">
+      <h1 class="list_title">掲示板一覧</h1>
+    </div>
 
-<table>
-  <thead>
-    <tr>
-      <th>投稿者</th>
-      <th>作品</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
+    <div class="inline-block_test position_right">
+      <a href="/lists/new" class="btn btn-outline-dark new_create">新規作成</a>
+    </div>
 
-  <tbody>
-    <% @lists.each do |list| %>
-      <tr>
-        <td><%= list.name %></td>
-        <td><%= list.title %></td>
-        <!-- listはオブジェクト名で,list.idが1であれば、list/1がリンク先になる -->
-        <td><%= link_to '詳細', list %></td>
-        <!-- rails/info/routesの設定パスに、listオブジェクトごと渡してる -->
-        <!-- これがeditのデフォルトになっている -->
-        <td><%= link_to '編集', edit_list_path(list) %></td>
-        <td><%= link_to '削除', list, method: :delete, data: { confirm: '本当に削除しますか？' } %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
+    <table class="table table-hover boards__table">
+      <thead class="thead-dark">
+        <tr>
+          <th class="width15">作成者</th>
+          <th class="width40">タイトル</th>
+          <th class="width25">評価</th>
+          <th class="width10">レビュー</th>
+          <th class="width10">編集・削除</th>
+        </tr>
+      </thead>
 
-<br>
+      <tbody>
+        
+        <% @lists.each do |list| %>
+          <tr>
 
-<!-- pathはrails/info/routesの設定　-->
-<%= link_to '新規作成', new_list_path %>
-<!-- localsでローカル変数を部分テンプレートに渡している -->
-<%= link_to '記事一覧', 'all_lists', locals: { lists: @list }  %>
+            <td>
+               <div class="author_name">
+                <% if list.name == @current_user.name %>
+                  <%= link_to list.name, mypage_path(:name => @current_user.name), method: :get %>
+                <% else %>
+                  <!-- こんな感じで引数を渡せば、actionでparams[:name]で引数を受け取れる -->
+                  <%= link_to list.name, mypage_path(:name => list.name), method: :get %>
+                <% end %> 
+              </div>  
+             <div class="author_image">
+                <% if list.image? %>
+                  <%= image_tag list.image_url, class: 'list_img_profile' %>
+                <% else %>
+                  <%= image_tag "noimage.gif",  class: 'list_img_profile' %>
+                <% end %> 
+             </div>                
+            </td>
+
+            <td>
+              <div class="product_name">
+                <%= list.product_name %>
+              </div> 
+
+              <div class="product_image">
+                <% if list.product_image? %>
+                  <%= image_tag list.product_image, class: 'img_profile' %>
+                <% end %> 
+              </div>  
+            </td>
+
+            <td>
+              <div class="col-md-6">
+               
+                <div class="value">
+                  <h4 class="rate-block">評価：<h4 class="rate rate-block"><%= list.rate %></h4>点</h4>
+                </div>
+
+                  <!--星評価-->
+                <div id="star-rate-<%= list.id %>"></div>
+                  <script>
+                  $('#star-rate-<%= list.id %>').raty({
+                    size: 36,
+                    starOff:  '<%= asset_path('star-off.png') %>',
+                    starOn : '<%= asset_path('star-on.png') %>',
+                    starHalf: '<%= asset_path('star-half.png') %>',
+                    half: true,
+                    readOnly: true,
+                    score: <%= list.rate %>,
+                  });
+                  </script>  
+                <!--/星評価-->
+          
+              </div>  
+            </td>
+
+            <!-- listはオブジェクト名で,list.idが1であれば、list/1がリンク先になる -->
+            <td><%= link_to '見る', list %></td>
+            <!-- rails/info/routesの設定パスに、listオブジェクトごと渡してる -->
+            <!-- これがeditのデフォルトになっている -->
+            <% if @current_user.name == list.name %>
+              <td>
+                <%= link_to '編集', edit_list_path(list) %>
+                <%= link_to '削除', list, method: :delete, data: { confirm: '本当に削除しますか？' } %>
+              </td>
+            <% end %>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+
+    <!-- pathはrails/info/routesの設定　-->
+    <%= link_to '新規作成', new_list_path %>
+    <!-- localsでローカル変数を部分テンプレートに渡している -->
+    <%= link_to '記事一覧', 'all_lists', locals: { lists: @list }  %>
+</div>

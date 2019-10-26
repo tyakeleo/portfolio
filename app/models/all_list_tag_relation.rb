@@ -14,6 +14,7 @@
 #  index_all_list_tag_relations_on_tag_id   (tag_id)
 #
 
+
 class AllListTagRelation < ApplicationRecord
   belongs_to :list
   belongs_to :tag

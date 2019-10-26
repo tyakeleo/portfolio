@@ -1,16 +1,37 @@
-<h1>ログイン</h1>
+<%= render 'shared/error_messages' %>
 
-<!-- postでrouteのsessions#create呼び出す -->
+<!-- rute.rbに定義されている --> 
+<!-- urlの指定でsessionコントローラのcreateが呼び出される -->
 <%= form_for(:session, method: :post, url: login_path) do |f| %>
-  <div class="form-group">
-    <%= f.label :name, 'ユーザー名' %>
-    <!-- text_fieldでユーザ名の作成 -->
-    <%= f.text_field :name, class: 'form-control' %>
-  </div>
-  <div class="form-group">
-    <%= f.label :password, 'パスワード' %>
-     <!-- password_fieldでユーザ名の作成 -->
-    <%= f.password_field :password, class: 'form-control' %>
-  </div>
-  <%= f.submit 'ログイン', class: 'btn btn-primary' %>
+<div class="container">
+  <body class="text-center">
+    <form class="form-signin">
+      <%= image_tag 'book_review_logo',:size =>'200x200', class: 'logo' %>
+        
+        <%# <label for="inputEmail" class="sr-only">Email address</label>
+        <input type="email" id="inputEmail" class="form-control" placeholder="Email address" required autofocus> %>
+        
+<!-- パスワードが伸びるの防ぎたい-->
+        
+         <div class="form-group">
+          <%= f.label :name, 'ユーザー名' %>
+          <!-- text_fieldでユーザ名の作成 -->
+          <%= f.text_field :name, placeholder: "ユーザ名", class: 'form-control' %>
+        </div>
+        <div class="form-group">
+          <%= f.label :password, 'パスワード' %>
+          <!-- placeholderでユーザガイド -->
+          <%= f.password_field :password, placeholder: "password",class: 'form-control' %>
+        </div>
+        <div class="checkbox mb-3">
+          <label>
+            <input type="checkbox" value="remember-me"> 次回ログイン時に名前を保持する
+          </label>
+        </div>
+      
+      <button class="btn btn-lg btn-primary btn-block form-group" type="submit">Sign in</button>
+     <p class="mt-5 mb-3 text-muted">&copy; 2019</p>
+    </form>
+  </body>
+</div>
 <% end %>

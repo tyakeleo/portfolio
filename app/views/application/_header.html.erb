@@ -1,5 +1,5 @@
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-  <a class="navbar-brand" href="#">なんでもれびゅ～</a>
+  <a class="navbar-brand" href="#">BOOK REVIEW</a>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
@@ -10,7 +10,10 @@
         <%= header_link_item('ホーム', root_path) %>
       </li>
       <li class="nav-item">
-        <%= header_link_item('掲示板一覧', lists_path) %>
+         <% if @current_user  %>
+          <%= header_link_item('掲示板一覧', lists_path) %>
+         <% else %>
+         <% end %>
       </li>
       <li class="nav-item dropdown">
         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -18,8 +21,9 @@
         </a>
         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
           <!-- ログインしてるかでページを振り分けてる -->
-          <% if @current_user %>
-            <%= link_to 'マイページ', mypage_path, class: 'dropdown-item' %>
+          <!-- @current_userだと初っ端な変更されない -->
+          <% if @current_user  %>
+            <%= link_to 'マイページ', mypage_path(:name => @current_user.name), method: :get, class: 'dropdown-item' %>
             <%= link_to 'ログアウト', logout_path, method: :delete, class: 'dropdown-item' %>
           <% else %>
             <%= link_to '登録', new_user_path, class: 'dropdown-item' %>
